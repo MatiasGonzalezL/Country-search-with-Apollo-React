@@ -36,3 +36,66 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background-color: rgb(229, 226, 226);
+}
+
+.div_principal {
+  position: absolute;
+	height: 500px;
+	width: 700px;
+	left: 40%;
+	top: 20%;
+	margin-top: -100px;
+	margin-left: -150px;
+  background-color: beige;
+}
+
+.div_titulo {
+  padding-left: 2%;
+}
+
+.input_general {
+  padding-left:2%;
+  padding-right:2%;
+  max-width:100%;
+  position: relative;
+}
+
+.input_text {
+  width:80%;
+  border-radius: 11px;
+  padding:1%;
+  padding-left:7%;
+  
+}
+
+#icon {
+  position:absolute;
+  display:block;
+  right: 41rem;
+  cursor:pointer;
+  padding-top:4px;
+}
+
+.grupo {
+  padding-left: 2%;
+  display:flex;
+}
+
+.boton {
+  height: 30px;
+  margin-top: 25px;
+  margin-left:10%;
+  font-weight: bolder;
+  padding-left: 7%;
+  padding-right:7%;
+  cursor:pointer;
+  border-radius: 7px;
+}
+
+.boton:focus {
+  background-color: rgb(15, 157, 88);
+  color: white;
+}
