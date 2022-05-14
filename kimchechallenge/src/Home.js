@@ -3,44 +3,40 @@ import { CountryQuery } from "./Query";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
-import { useLazyQuery } from "@apollo/react-hooks";
-import { Card } from 'react-bootstrap';
+import { useQuery } from "@apollo/react-hooks";
 
 export const Home = () => {
-    const [usuarios, setUsuarios] = useState([]);
-    const [tablaUsuarios, setTablaUsuarios] = useState([]);
     const [busqueda, setBusqueda] = useState("");
-    const [countrySearched, setCountrySearched] = useState("");
 
-    const [getCountry, { loading, data, error }] = useLazyQuery(
-        CountryQuery,
-        {
-            variables: { name: countrySearched },
+
+    //traer datos
+    const { loading, data, error } = useQuery(CountryQuery);
+            
+        if (loading) return "Cargando...";
+        if (error) return `Error! ${error.meesage}`;
+        if (data) {
+            console.log(data);
         }
-    );
 
-    if (error) return <h2>Error found!</h2>
-    if (data) {
-        console.log(data);
+    
+    //busqueda
+     const buscador = (e) => {
+        setBusqueda(e.target.value)
+        //console.log(e.target.value);
     }
 
-    const handleChange = e => {
-        setBusqueda(e.target.value);
-        //console.log("Busqueda: "+e.target.value);
-        filtrar(e.target.value);
-    }
 
-    const filtrar = (terminoBusqueda) => {
-        var resultadoBusqueda = data.countries.filter((country) => {
-            if (country.name.toString().toLowerCase().includes(terminoBusqueda.toLowerCase())
-            ) {
-                return country;
-            }
-        });
-        setUsuarios(resultadoBusqueda);
+    //filtrado
+    let resultados = [];
+    if(!busqueda)
+    {
+        resultados = data.countries
+    }else {
+        resultados = data.countries.filter((dato) => 
+        dato.name.toLowerCase().includes(busqueda.toLocaleLowerCase())
+        )
+        console.log(resultados);
     };
-
-    //const paisFiltrado = data.map((pais) => pais.name);
 
 
     return (
@@ -59,22 +55,20 @@ export const Home = () => {
                         type="text"
                         name="code"
                         placeholder="Escribe el país a buscar"
-                        // onChange={(e) => {
-                        //     setCountrySearched(e.target.value)
-                        // }}
-                        onChange={handleChange}
+                        value={busqueda}
+                        onChange={buscador}
                     />
                 </form>
             </div>
             <div className="grupo">
                 <h2>Group by:</h2>
-                <button onClick={() => getCountry()} type="button" className="boton">Continent</button>
+                <button  type="button" className="boton">Continent</button>
                 <button type="button" className="boton">Language</button>
             </div>
             <div>
                 <h2>Aquí van los países</h2>
                 <div>
-                    {data && data.countries.map((country, idx) => {
+                    {resultados && resultados.map((country, idx) => {
                         return (
                             <div className="card" key={idx}>
                                 <div className="container">
