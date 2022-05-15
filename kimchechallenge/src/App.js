@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import "./App.css";
-import ApolloClient, { gql, InMemoryCache } from "apollo-boost";
+import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { Home } from "./Home";
+import { Home } from "./Home copy 2";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
