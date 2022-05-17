@@ -172,11 +172,12 @@ export const Home = () => {
 
                 {continentes ?
                     <div className="container2">
-                        {dataquery.continentsData.map((conti) => {
+                        {dataquery.continentsData.map((conti, id) => {
                             <h2>Continentes</h2>
                             return (
-                                <>
-                                {conti.name && <h4 className="titulo_continente">{conti.name}</h4>}
+                                <div className="cards" key={id}>
+                                
+                                {conti.countries.filter(user => user.name.toLowerCase().includes(busqueda)) != 0 && <h4 className="titulo_continente">{conti.name}</h4>}
                                
                                     {conti && conti.countries.filter(user => user.name.toLowerCase().includes(busqueda)).map((country, idx) => {
                                         return (
@@ -186,7 +187,6 @@ export const Home = () => {
                                                     <div className="div1">
                                                         <h6>Code: {country.code}</h6>
                                                         <h6>Capital: {country.capital}</h6>
-                                                        <h6>Native: {country.native}</h6>
                                                     </div>
                                                     <div className="div2">
                                                         <h6>Language: {country.languages.map((language) => language.name)}</h6>
@@ -200,7 +200,7 @@ export const Home = () => {
                                                 </div>
                                             </div>)
                                     })}
-                                </>
+                                </div>
                             )
                         })}
                     </div>
@@ -225,7 +225,6 @@ export const Home = () => {
                             :
                             <>
                                 <div className="container1">
-                                {/* filter(user => user.name.toLowerCase().includes(busqueda)) */}
                                     {data.countriesData.filter(user => user.name.toLowerCase().includes(busqueda)).map((country, idx) => {
                                         return (
                                             <div className="card" key={idx}>
@@ -234,7 +233,6 @@ export const Home = () => {
                                                     <div className="div1">
                                                         <h6>Code: {country.code}</h6>
                                                         <h6>Capital: {country.capital}</h6>
-                                                        <h6>Native: {country.native}</h6>
                                                     </div>
                                                     <div className="div2">
                                                         <h6>Language: {country.languages.map((language) => language.name)}</h6>
