@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import ApolloClient, { InMemoryCache } from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
-import { Home } from "./Home copy 4";
+import { Home } from "./Home"
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
