@@ -120,55 +120,69 @@ export const Home = () => {
 
                 {continentes ?
                     <div className="container2">
-                        {data.continentsData.map((continent, idx) => {
-                            <h2>Continentes</h2>
-                            return (
-                                <>
-                                    <h4 key={idx} className="titulo_pais">{continent.name}</h4>
-
-                                    {/* Trayendo los datos hasta data.continentsData */}
-                                    {/* {countryArray && <div>{countryArray.map((country, idx) => {
+                    {countryArray.map((continent, idx) => {
+                        <h2>Continentes</h2>
+                        return (
+                            <>
+                                <h4 key={idx} className="titulo_pais">{continent.name}</h4>
+                                {console.log(continent)}
+                                    {<div>{countriesArray2.map((pais, idx) => {
                                         return (
                                             <div className="card" key={idx}>
-                                                <p>"hola mundo"</p>
-                                                <h5>{country.name}</h5>
-                                                <h5>{country.currency}</h5>
-                                            </div>)
-                                    })}</div>} */}
+                                                <h5>{pais.name}</h5>
+                                                <h5>{pais.countries.map((p) => p.name)}</h5>
+                                            </div>
+                                        )
+                                        
+                                    })}
+                                        
+                                    </div>}
+                                    {/* <div>{continent.countries.forEach(element => {
+                                        console.log(element);
+                                    })}</div> */}
+                                {/* Trayendo los datos hasta data.continentsData */}
+                                {/* {countryArray && <div>{countryArray.map((country, idx) => {
+                                    return (
+                                        <div className="card" key={idx}>
+                                            <p>"hola mundo"</p>
+                                            <h5>{country.name}</h5>
+                                            <h5>{country.currency}</h5>
+                                        </div>)
+                                })}</div>} */}
 
-                                    {/* Traer los datos con forEach (para objetos) */}
-                                    {countryArray && <div>{countryArray.forEach(element => {
-                                        element.countries.forEach(ele => {
-                                            if (ele.continent.code === "EU") {
-                                                {console.log(ele)}
-                                                return (
-                                                    <div className="card" key={idx}>
-                                                        <div className="container">
-                                                            <h4>"Hola Mundo"</h4>
-                                                            <h4 className="titulo_pais">{ele.emoji} - {ele.name}</h4>
-                                                            <div className="div1">
-                                                                <h6>Code: {ele.code}</h6>
-                                                                <h6>Capital: {ele.capital}</h6>
-                                                            </div>
-                                                            {/* <div className="div2">
-                                                                <h6>Language: {country.languages.map((language) => language.name)}</h6>
-                                                                <h6>Language native: {country.languages.map((language) => language.native)}</h6>
-                                                                <h6>Language code: {country.languages.map((language) => language.code)}</h6>
-                                                            </div> */}
-                                                            {/* <div className="div3">
-                                                                <h6>Continent: {country.continent.name}</h6>
-                                                                <h6>Continent code: {country.continent.code}</h6>
-                                                            </div> */}
+                                {/* Traer los datos con forEach (para objetos) */}
+                                {countryArray && <div>{countryArray.forEach(element => {
+                                    element.countries.forEach(ele => {
+                                        if (ele.continent.code === "EU") {
+                                            // {console.log(ele)}
+                                            return (
+                                                <div className="card" key={idx}>
+                                                    <div className="container">
+                                                        <h4>"Hola Mundo"</h4>
+                                                        <h4 className="titulo_pais">{ele.emoji} - {ele.name}</h4>
+                                                        <div className="div1">
+                                                            <h6>Code: {ele.code}</h6>
+                                                            <h6>Capital: {ele.capital}</h6>
                                                         </div>
+                                                        {/* <div className="div2">
+                                                            <h6>Language: {country.languages.map((language) => language.name)}</h6>
+                                                            <h6>Language native: {country.languages.map((language) => language.native)}</h6>
+                                                            <h6>Language code: {country.languages.map((language) => language.code)}</h6>
+                                                        </div> */}
+                                                        {/* <div className="div3">
+                                                            <h6>Continent: {country.continent.name}</h6>
+                                                            <h6>Continent code: {country.continent.code}</h6>
+                                                        </div> */}
                                                     </div>
-                                                )
-                                            }})
-                                        })
-                                    }</div>}
-                                </>
-                            )
-                        })}
-                    </div>
+                                                </div>
+                                            )
+                                        }})
+                                    })
+                                }</div>}
+                            </>
+                        )
+                    })}
+                </div>
                     :
                     <>
                         {idiomas ? <div className="container3">
