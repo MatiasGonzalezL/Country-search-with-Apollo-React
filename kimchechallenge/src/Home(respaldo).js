@@ -10,25 +10,44 @@ export const Home = () => {
     const [paises, setPaises] = useState(true);
     const [continentes,setContinentes] = useState(false);
     const [idiomas,setIdiomas] = useState(false);
-    
+    const [botones, setBotones] = useState(false);
+    const [botones2, setBotones2] = useState(false);
 
-    //traer datos con boton
+
+    //traer datos con Usequery
     const { loading, data } = useQuery(DataQuery)
 
-    if (loading) return "Cargando.......";
+    if (loading) return <h2 className="loading">Cargando la información...</h2>;
     if (data) {
         var dataquery = data;
     }
 
     
-    //busqueda
+    //busqueda general
     const buscador = (e) => {
         setBusqueda(e.target.value)
         console.log(e.target.value);
-        console.log(data.continentsData.filter(user => user.name.toLowerCase().includes("an")));
     }
 
-    
+
+    //botones cambiantes Continent
+    const toggleButtons = () => {
+        setBotones(!botones);
+        setPaises(!paises);
+        setIdiomas(idiomas);
+        setContinentes(!continentes)
+    };
+
+
+    //botones cambiantes Language
+    const toggleButtons2 = () => {
+        setBotones2(!botones2);
+        setPaises(!paises);
+        setContinentes(continentes);
+        setIdiomas(!idiomas);
+    }
+
+
     return (
         <div className="div_principal">
             <div className="div_titulo">
@@ -53,27 +72,29 @@ export const Home = () => {
             <div className="grupo">
                 <h2>Group by:</h2>
                 <button
-                    type="button"
-                    className="boton"   
-                    onClick={() => {setPaises(!paises); setContinentes(!continentes); setIdiomas(idiomas)}}
+                    type="checkbox"
+                    className={"toggle-button " + (botones ? "toggle--close": "")}
+                    id="boton"  
+                    onClick={toggleButtons}
                 >Continent
                 </button>
                 <button
-                    type="button"
-                    className="boton"
-                onClick={() => {setPaises(!paises); setIdiomas(!idiomas); setContinentes(continentes)}}
+                    type="checkbox"
+                    className={"toggle-button " + (botones2 ? "toggle--close2": "")}
+                    id="boton"
+                    onClick={toggleButtons2}
                 >Language
                 </button>
             </div>
             <div>
                 {continentes ?
                     <div className="container2">
-                        {dataquery.continentsData.map((conti, id) => {
+                        {dataquery.continentsData.map((continent, id) => {
                             <h2>Continentes</h2>
                             return (
                                 <div className="cards" key={id}>  
-                                {conti.countries.filter(user => user.name.toLowerCase().includes(busqueda)) != 0 && <h4 className="titulo_continente">{conti.name}</h4>}                       
-                                    {conti && conti.countries.filter(user => user.name.toLowerCase().includes(busqueda)).map((country, idx) => {
+                                {continent.countries.filter(user => user.name.toLowerCase().includes(busqueda)) != 0 && <h4 className="titulo_continente">{continent.name}</h4>}                       
+                                    {continent && continent.countries.filter(user => user.name.toLowerCase().includes(busqueda)).map((country, idx) => {
                                         return (
                                             <div className="card" key={idx}>
                                                 <div className="container">
