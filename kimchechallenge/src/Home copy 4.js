@@ -1,4 +1,4 @@
-import React, { cloneElement, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DataQuery } from "./Queries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -10,8 +10,11 @@ export const Home = () => {
     const [paises, setPaises] = useState(true);
     const [continentes,setContinentes] = useState(false);
     const [idiomas,setIdiomas] = useState(false);
-    const [state, setState] = useState("");
+    const [query, setQuery] = useState("");
     
+    // useEffect(() => {
+        
+    // });
 
     //traer datos con boton
     const { loading, data } = useQuery(DataQuery)
@@ -28,6 +31,7 @@ export const Home = () => {
     const buscador = (e) => {
         setBusqueda(e.target.value)
         console.log(e.target.value);
+        console.log(data.continentsData.filter(user => user.name.toLowerCase().includes("an")));
     }
 
 
@@ -143,6 +147,7 @@ export const Home = () => {
                         name="code"
                         placeholder="Escribe el país a buscar"
                         value={busqueda}
+                        //onChange={(e) => setQuery(e.target.value)}
                         onChange={buscador}
                     />
                 </form>
@@ -171,9 +176,9 @@ export const Home = () => {
                             <h2>Continentes</h2>
                             return (
                                 <>
-                                <h4 className="titulo_continente">{conti.name}</h4>
+                                {conti.name && <h4 className="titulo_continente">{conti.name}</h4>}
                                
-                                    {conti && conti.countries.map((country, idx) => {
+                                    {conti && conti.countries.filter(user => user.name.toLowerCase().includes(busqueda)).map((country, idx) => {
                                         return (
                                             <div className="card" key={idx}>
                                                 <div className="container">
@@ -202,7 +207,7 @@ export const Home = () => {
                     :
                     <>
                         {idiomas ? <div className="container3">
-                            {data.languagesData.map((language, idx) => {
+                            {data.languagesData.filter(user => user.name.toLowerCase().includes(busqueda)).map((language, idx) => {
                                 return (
                                     <>
                                         <h4 className="titulo_pais">{language.name}</h4>
@@ -220,7 +225,8 @@ export const Home = () => {
                             :
                             <>
                                 <div className="container1">
-                                    {data.countriesData.map((country, idx) => {
+                                {/* filter(user => user.name.toLowerCase().includes(busqueda)) */}
+                                    {data.countriesData.filter(user => user.name.toLowerCase().includes(busqueda)).map((country, idx) => {
                                         return (
                                             <div className="card" key={idx}>
                                                 <div className="container">
