@@ -1,7 +1,13 @@
 # Desafío para Software Engineers
 
-Nombre postulante: [TU NOMBRE]
+Nombre postulante: [Matías González]
 Link a la app en producción: [LINK DEL DEPLOY]
+
+## Pregunta abierta
+
+"La tabla que contiene la información correspondiente a la asistencia diaria de un niño en un colegio tiene 90 millones de filas. Todas las tablas del sistema existen en la misma BDD en MySQL. La lógica del backend que actualiza la información correspondiente al pasar la asistencia tiene un tiempo de servicio p95 de 10 segundos. El equipo está interesado en bajar este tiempo para mejorar la experiencia del usuario (y porque nos gusta pensar en Kimche como un Ferrari). ¿Qué propondrías para enfrentar el problema? Esta pregunta es abierta, no hay respuestas malas. Puedes proponer arquitectura, tecnologías, diseño, etc."
+
+Respuesta: ------> Si queremos bajar el tiempo de respuesta debemos dividir para conquistar, es decir, empaquetaría la lista de asistencia por semana, mes o año (dependiendo del tiempo que lleve el alumno), probablemente por semana sería lo más apropiado. De esta forma podemos sacar un promedio o conteo por semana, luego por mes y agruparlos en categorias más pequeñas. De esta forma bajaríamos los 90 millones de datos a cerca de 18 millones si lo hacemos por semana (5 días hábiles) y a cerca de 4,5 millones si lo hacemos por mes (20 días hábiles aprox.). Esto obviamente bajaría el tiempo de respuesta al tener menos datos con los que trabajar y a los que llamar, ya que el sistema almacenaría los datos antiguos y no los llamaría a menos que el usuario lo solicitara. Sumado a lo anterior, utilizaría React para hacer uso de los hooks y poder almacenar la información con los states y además poder trabajar mejor con las variables, para el diseño lo más usual es Bootstrap, ya que así nos ahorramos tiempo al tener elementos disponibles ya hechos.
 
 ## Instrucciones
 
