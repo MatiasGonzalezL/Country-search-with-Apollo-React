@@ -20,7 +20,6 @@ export const Home = () => {
     if (loading) return <h2 className="loading">Cargando la información...</h2>;
     if (data) {
         var dataquery = data;
-        //console.log(dataquery);
     }
 
     
@@ -47,21 +46,6 @@ export const Home = () => {
         setContinentes(continentes);
         setIdiomas(!idiomas);
     }
-
-
-    //comparar arrays y objetos
-    const countriesPaises = dataquery.countriesData;
-
-    var grupos = [];
-    countriesPaises.forEach(pais => {
-        pais.languages.map((la) => {
-            if (!grupos[la.name]) grupos[la.name] = [];
-            grupos[la.name].push(pais);
-            return true
-        });  
-    });
-    
-    const idiomasFinal = Object.entries(grupos);
 
 
     return (
@@ -138,33 +122,19 @@ export const Home = () => {
                     :
                     <>
                         {idiomas ? <div className="container3">
-                            {idiomasFinal && idiomasFinal.map((language, id) => {
-                                <h2>Idiomas</h2>
+                            {data.languagesData.filter(user => user.name.toLowerCase().includes(busqueda)).map((language, idx) => {
                                 return (
-                                    <div className="cards" key={id}>
-                                        {language[1].filter(user => user.name.toLowerCase().includes(busqueda)) !=0 && <h4 className="titulo_idioma">{language[0]}</h4>}
-                                            {language[1].filter(user => user.name.toLowerCase().includes(busqueda)).map((lan, i) => {
-                                                return ( 
-                                                    <div className="card" key={i}>
-                                                        <div className="container">
-                                                            <h4 className="titulo_pais">{lan.emoji} {lan.name}</h4>
-                                                            <div className="div1">
-                                                                <h6>Code: {lan.code}</h6>
-                                                                <h6>Capital: {lan.capital}</h6>
-                                                            </div>
-                                                            <div className="div2">
-                                                                <h6>Language: {lan.languages.map((language) => language.name)}</h6>
-                                                                <h6>Language native: {lan.languages.map((language) => language.native)}</h6>
-                                                                <h6>Language code: {lan.languages.map((language) => language.code)}</h6>
-                                                            </div>
-                                                            <div className="div3">
-                                                                <h6>Continent: {lan.continent.name}</h6>
-                                                                <h6>Continent code: {lan.continent.code}</h6>
-                                                            </div>
-                                                        </div>
-                                                    </div>)
-                                            })}
-                                    </div>)
+                                    <>
+                                        <h4 className="titulo_pais">{language.name}</h4>
+                                        <div className="card" key={idx}>
+                                            <h4 className="titulo_pais">{language.name}</h4>
+                                            <div className="container">
+                                                <h6 className="titulo_pais">Language code: {language.code}</h6>
+                                                <h6 className="titulo_pais">Language native: {language.native}</h6>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
                             })}
                         </div>
                             :
@@ -197,5 +167,6 @@ export const Home = () => {
                         }
                     </>}
             </div>
-        </div>);
+        </div>
+    );
 };
