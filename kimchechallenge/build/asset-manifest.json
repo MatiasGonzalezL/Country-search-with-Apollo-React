@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/Country-search-with-Apollo-React/static/css/main.cdccdcf5.css",
-    "main.js": "/Country-search-with-Apollo-React/static/js/main.05cc9748.js",
-    "index.html": "/Country-search-with-Apollo-React/index.html",
-    "main.cdccdcf5.css.map": "/Country-search-with-Apollo-React/static/css/main.cdccdcf5.css.map",
-    "main.05cc9748.js.map": "/Country-search-with-Apollo-React/static/js/main.05cc9748.js.map"
+    "main.css": "./static/css/main.195b6d35.css",
+    "main.js": "./static/js/main.9f3c2397.js",
+    "index.html": "./index.html",
+    "main.195b6d35.css.map": "./static/css/main.195b6d35.css.map",
+    "main.9f3c2397.js.map": "./static/js/main.9f3c2397.js.map"
   },
   "entrypoints": [
-    "static/css/main.cdccdcf5.css",
-    "static/js/main.05cc9748.js"
+    "static/css/main.195b6d35.css",
+    "static/js/main.9f3c2397.js"
   ]
 }
