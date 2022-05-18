@@ -39,5 +39,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "homepage": "https://matiasgonzalezl.github.io/Country-search-with-Apollo-React/"
 }
